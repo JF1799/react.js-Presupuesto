@@ -1,23 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Pregunta from "./Componentes/Pregunta";
+import Formulario from "./Componentes/Formulario";
 
 function App() {
+  //definira el state
+  const [presupuesto, guardarPresupuesto] = useState(0);
+  const [restante, guardarRestante] = useState(0);
+  const [mostrarpregunta, actualizarPregunta] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="container">
+      <header>
+        <h1>PRESUPUESTO</h1>
+
+        <div className="contenido-principal contenido">
+          {mostrarpregunta ? (
+            <Pregunta
+              guardarRestante={guardarRestante}
+              guardarPresupuesto={guardarPresupuesto}
+              actualizarPregunta={actualizarPregunta}
+            />
+          ) : (
+            <div className="row">
+              <div className="one-half clumn">
+                <Formulario />
+              </div>
+              <div className="one-half clumn">2</div>
+            </div>
+          )}
+        </div>
       </header>
     </div>
   );
